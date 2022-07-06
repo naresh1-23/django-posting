@@ -1,0 +1,13 @@
+{% extends "blog/layout.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="main">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form|crispy }}
+            <div class="submit_btn">
+                <button class="btn btn-primary submit" type="submit">Sign Up</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

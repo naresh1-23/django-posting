@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Twitter</title>
+    {% endif %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://kit.fontawesome.com/08bb587d23.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+    <!--side navbar-->
+    <nav class="sidenavbar">
+        <div class="container">
+            <div class="row sidenav">
+                <a href="{% url 'blog-home' %}" class="logo"><img height="30px" width="30px" src="{% static 'images/logo.png' %}" alt="" srcset=""></a>
+                <a href="{% url 'blog-home' %}" class="sidenav_link"><i class="fa-solid fa-house fonting"></i>Home</a>
+                <a href="home.php" class="sidenav_link"><i class="fa-regular fa-bell fonting"></i>Notifications</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="sidenav_link"><i class="fa-regular fa-user fonting"></i>Profile</a>
+                <a href="{% url 'logout' %}" class="sidenav_link"><i class="fa-solid fa-right-from-bracket fonting"></i>Logout</a>
+                {% else %}
+                <a href="{% url 'register' %}" class="sidenav_link"><i class="fa-solid fa-user-plus fonting"></i>Signup</a>
+                <a href="{% url 'login' %}" class="sidenav_link"><i class="fa-solid fa-right-to-bracket fonting"></i>Login</a>
+                {% endif %}
+                <a href="{% url 'create-post' %}" class="Tweet" style="margin: 15px 55px 0px 0px; ">Tweet</a>
+                <a href="home.php" class="profile" style="margin-top: 15px;  "><i class="fa-regular fa-user fonting"></i>Naresh Tamang<i class="fa-solid fa-ellipsis"style="padding-left: 25px;"></i></a>
+            </div>
+        </div>
+    </nav>
+    <!--sidenavbar end-->
+    <!---top navbar-->
+    <nav class="navbar">
+        <div class="container">
+            <div class="col topicname">
+                <a href="home.php" class="topnav">Home</a>
+            </div>
+            <div class="col top">
+                <a href="home.php" class="topnavicon"><i class="fa-solid fa-star"></i></a>
+            </div>
+            <div class="search_div">
+                <span class="searchicon"><i class="fa-solid fa-magnifying-glass"></i><input class="search" type="text" placeholder="Search Twitter"></span>
+            </div>
+        </div>
+    </nav>
+    <!--top navbar end-->
+    {% block content %}
+    {% endblock content %}
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</html>

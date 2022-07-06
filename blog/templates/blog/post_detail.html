@@ -1,0 +1,37 @@
+{% extends "blog/layout.html" %}
+{% load static %}
+{% block content %}
+    <div class="posts">
+      <div class="profile_image">
+        <img height="55px" width="55px" style="border-radius:30px ; float: left;" src="{% static 'images/nar.jpg' %}" alt="" srcset="">
+        <p><b>{{post.author.username}}</b>  . {{ post.time_now|date:"F d, Y" }}{% if post.author == user %}
+          <div class="submit_btn" style="margin-left: 70%;">
+            <a href="{% url 'update-post' post.id%}"><button class="btn btn-primary submit" type="submit">Update</button></a>
+            <a href="{% url 'delete-post' post.id%}"><button class="btn btn-danger submit" type="submit">Delete</button></a>
+        </div>
+          {% endif %}</p>
+        <p>{{ post.caption }}</p>
+      </div>
+      <div class="post_image">
+        <img height="550" width="500px" style="border-radius:30px ;margin-left: 12%;" src="{{ post.post_image.url }}" alt="" srcset="">
+      </div>
+      {% if user.is_authenticated %}
+      <div class="likcom" style="margin-top: 15px;">
+        <a href="" class="likes "><i class="fa-regular fa-comment comment"></i></a> &nbsp3
+        <a href="" class="likes "><i class="fa-solid fa-retweet retweet"></i></a> &nbsp3
+        <a href="" class="likes "><i class="fa-regular fa-heart like"></i></a> &nbsp151
+        <a href="" class="likes "><i class="fa-solid fa-arrow-up-from-bracket share"></i></a>
+      </div>
+      {% else %}
+      <div class="likcom" style="margin-top: 15px;">
+        <i class="fa-regular fa-comment comment likes"></i> &nbsp3
+        <i class="fa-solid fa-retweet retweet likes"></i> &nbsp3
+        <i class="fa-regular fa-heart like likes"></i> &nbsp151
+        <i class="fa-solid fa-arrow-up-from-bracket likes share"></i>
+      </div>
+      {% endif %}
+      <hr class="postline">
+    </div>
+
+    
+{% endblock content %}
